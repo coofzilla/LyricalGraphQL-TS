@@ -4,9 +4,9 @@ import {
   GraphQLID,
   GraphQLList,
 } from "graphql";
-import mongoose from "mongoose";
+
 import LyricType from "./lyric_type";
-import { Song } from "../models/song";
+import Song from "../models/song";
 
 const SongType = new GraphQLObjectType({
   name: "SongType",

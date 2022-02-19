@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const graphql_1 = require("graphql");
-const song_1 = require("../models/song");
+const song_1 = __importDefault(require("../models/song"));
 const lyric_1 = __importDefault(require("../models/lyric"));
 const song_type_1 = __importDefault(require("./song_type"));
 const lyric_type_1 = __importDefault(require("./lyric_type"));
@@ -17,7 +17,7 @@ const mutation = new graphql_1.GraphQLObjectType({
                 title: { type: graphql_1.GraphQLString },
             },
             resolve(parentValue, { title }) {
-                return new song_1.Song({ title }).save();
+                return new song_1.default({ title }).save();
             },
         },
         addLyricToSong: {
@@ -27,7 +27,7 @@ const mutation = new graphql_1.GraphQLObjectType({
                 songId: { type: graphql_1.GraphQLID },
             },
             resolve(parentValue, { content, songId }) {
-                return song_1.Song.addLyric(songId, content);
+                return song_1.default.addLyric(songId, content);
             },
         },
         likeLyric: {
@@ -41,7 +41,7 @@ const mutation = new graphql_1.GraphQLObjectType({
             type: song_type_1.default,
             args: { id: { type: graphql_1.GraphQLID } },
             resolve(parentValue, { id }) {
-                return song_1.Song.remove({ _id: id });
+                return song_1.default.remove({ _id: id });
             },
         },
     },

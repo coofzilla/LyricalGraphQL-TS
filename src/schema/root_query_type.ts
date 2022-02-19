@@ -5,11 +5,10 @@ import {
   GraphQLNonNull,
 } from "graphql";
 import SongType from "./song_type";
-import mongoose from "mongoose";
 import LyricType from "./lyric_type";
+import Lyric from "../models/lyric";
+import Song from "../models/song";
 
-const Song = mongoose.model("song");
-const Lyric = mongoose.model("lyric");
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",

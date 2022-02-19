@@ -1,6 +1,6 @@
 import { Schema, Types, model, Model } from "mongoose";
 
-interface Lyrics {
+export interface Lyrics {
   likes: number;
   content: string;
   song: Types.ObjectId;

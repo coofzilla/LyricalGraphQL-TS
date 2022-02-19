@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const graphql_1 = require("graphql");
 const lyric_type_1 = __importDefault(require("./lyric_type"));
-const song_1 = require("../models/song");
+const song_1 = __importDefault(require("../models/song"));
 const SongType = new graphql_1.GraphQLObjectType({
     name: "SongType",
     fields: () => ({
@@ -14,7 +14,7 @@ const SongType = new graphql_1.GraphQLObjectType({
         lyrics: {
             type: new graphql_1.GraphQLList(lyric_type_1.default),
             resolve(parentValue) {
-                return song_1.Song.findLyrics(parentValue.id);
+                return song_1.default.findLyrics(parentValue.id);
             },
         },
     }),

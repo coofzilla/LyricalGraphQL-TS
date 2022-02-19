@@ -3,7 +3,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Song = void 0;
 const mongoose_1 = require("mongoose");
 const lyric_1 = __importDefault(require("./lyric"));
 const SongSchema = new mongoose_1.Schema({
@@ -19,6 +18,7 @@ const SongSchema = new mongoose_1.Schema({
         },
     ],
 });
+//modify to async w/ "static"
 SongSchema.statics.addLyric = function (id, content) {
     return this.findById(id).then((song) => {
         const lyric = new lyric_1.default({ content, song });
@@ -26,9 +26,9 @@ SongSchema.statics.addLyric = function (id, content) {
         return Promise.all([lyric.save(), song.save()]).then(([lyric, song]) => song);
     });
 };
-SongSchema.statics.findLyrics = function (id) {
-    return this.findById(id)
-        .populate("lyrics")
-        .then((song) => song.lyrics);
-};
-exports.Song = (0, mongoose_1.model)("song", SongSchema);
+SongSchema.static("findLyrics", async function findLyrics(id) {
+    const song = await Song.findById(id).populate("lyrics");
+    return song.lyrics;
+});
+const Song = (0, mongoose_1.model)("song", SongSchema);
+exports.default = Song;

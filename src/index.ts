@@ -1,5 +1,4 @@
 import express from "express";
-import * as models from "./models";
 import mongoose from "mongoose";
 import { mongoURI } from "./config/dev";
 import { graphqlHTTP } from "express-graphql";
