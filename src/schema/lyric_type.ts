@@ -7,7 +7,7 @@ import {
   GraphQLString,
 } from "graphql";
 import SongType from "./song_type";
-import { Lyric } from "../models/lyric";
+import  Lyric  from "../models/lyric";
 
 const LyricType: any = new GraphQLObjectType({
   name: "LyricType",

@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-import { Lyric } from "./lyric";
+import  Lyric  from "./lyric";
 
 const SongSchema = new Schema({
   title: { type: String },
@@ -32,5 +32,3 @@ SongSchema.statics.findLyrics = function (id) {
 };
 
 export const Song = mongoose.model("song", SongSchema);
-
-

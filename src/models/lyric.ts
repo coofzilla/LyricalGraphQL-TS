@@ -1,20 +1,30 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema, Types, model, Model } from "mongoose";
 
-const LyricSchema = new Schema({
+interface Lyrics {
+  likes: number;
+  content: string;
+  song: Types.ObjectId;
+}
+
+interface LyricModel extends Model<Lyrics> {
+  like(): number;
+}
+
+const LyricSchema = new Schema<Lyrics, LyricModel>({
+  likes: { type: Number, default: 0 },
+  content: { type: String },
   song: {
     type: Schema.Types.ObjectId,
     ref: "song",
   },
-  likes: { type: Number, default: 0 },
-  content: { type: String },
 });
 
-LyricSchema.statics.like = async function (id) {
-  // const Lyric = mongoose.model("lyric");
-
+LyricSchema.static("like", async function like(id) {
+  //   const Lyric = mongoose.model<Lyrics>("lyric");
   const lyric = await Lyric.findById(id);
   ++lyric!.likes;
-  return await lyric.save();
-};
+  return await lyric!.save();
+});
 
-export const Lyric = mongoose.model("lyric", LyricSchema);
+const Lyric = model<Lyrics, LyricModel>("lyric", LyricSchema);
+export default Lyric;

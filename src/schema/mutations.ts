@@ -1,7 +1,7 @@
 import { GraphQLObjectType, GraphQLString, GraphQLID } from "graphql";
 import mongoose from "mongoose";
 import { Song } from "../models/song";
-import { Lyric } from "../models/lyric";
+import Lyric from "../models/lyric";
 import SongType from "./song_type";
 import LyricType from "./lyric_type";
 
