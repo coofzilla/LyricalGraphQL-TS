@@ -4,6 +4,10 @@ import {
   GraphQLID,
   GraphQLNonNull,
 } from "graphql";
+import SongType from "./song_type";
+import mongoose from "mongoose";
+
+const Song = mongoose.model("song");
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
@@ -21,13 +25,13 @@ const RootQuery = new GraphQLObjectType({
         return Song.findById(id);
       },
     },
-    lyric: {
-      type: LyricType,
-      args: { id: { type: new GraphQLNonNull(GraphQLID) } },
-      resolve(parentValue, { id }) {
-        return Lyric.findById(id);
-      },
-    },
+    // lyric: {
+    //   type: LyricType,
+    //   args: { id: { type: new GraphQLNonNull(GraphQLID) } },
+    //   resolve(parentValue, { id }) {
+    //     return Lyric.findById(id);
+    //   },
+    // },
   }),
 });
 

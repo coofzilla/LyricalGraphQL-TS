@@ -1,13 +1,14 @@
 import express from "express";
-import { graphqlHTTP } from "express-graphql";
-import { schema } from "./schema/schema";
 import mongoose from "mongoose";
 import { mongoURI } from "./config/dev";
+import { graphqlHTTP } from "express-graphql";
+import { schema } from "./schema/schema";
 
 const app = express();
 
 (async () => {
   try {
+    mongoose.Promise = global.Promise;
     await mongoose.connect(mongoURI);
     console.log("CONNECTED TO MONGODB");
   } catch (err) {
@@ -15,13 +16,13 @@ const app = express();
   }
 })();
 
-// app.use(
-//   "/graphql",
-//   graphqlHTTP({
-//     schema,
-//     graphiql: true,
-//   })
-// );
+app.use(
+  "/graphql",
+  graphqlHTTP({
+    schema,
+    graphiql: true,
+  })
+);
 
 app.listen(4000, () => {
   console.log("LISTENING ON 4000");
