@@ -1,4 +1,4 @@
-import mongoose, { Schema, Types, model, Model } from "mongoose";
+import { Schema, Types, model, Model } from "mongoose";
 
 interface Lyrics {
   likes: number;
@@ -7,7 +7,7 @@ interface Lyrics {
 }
 
 interface LyricModel extends Model<Lyrics> {
-  like(): number;
+  like(id: any): number;
 }
 
 const LyricSchema = new Schema<Lyrics, LyricModel>({
@@ -20,7 +20,6 @@ const LyricSchema = new Schema<Lyrics, LyricModel>({
 });
 
 LyricSchema.static("like", async function like(id) {
-  //   const Lyric = mongoose.model<Lyrics>("lyric");
   const lyric = await Lyric.findById(id);
   ++lyric!.likes;
   return await lyric!.save();
@@ -28,3 +27,4 @@ LyricSchema.static("like", async function like(id) {
 
 const Lyric = model<Lyrics, LyricModel>("lyric", LyricSchema);
 export default Lyric;
+

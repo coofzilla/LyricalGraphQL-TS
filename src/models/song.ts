@@ -1,7 +1,18 @@
-import mongoose, { Schema } from "mongoose";
-import  Lyric  from "./lyric";
+import mongoose, { Schema, Types, model, Model } from "mongoose";
+import Lyric from "./lyric";
 
-const SongSchema = new Schema({
+interface Songs {
+  title: string;
+  user: Types.ObjectId;
+  lyrics: Types.ObjectId;
+}
+
+interface SongModel extends Model<Songs> {
+  addLyric(songId: any, content: any): any;
+  findLyrics(id: any): any;
+}
+
+const SongSchema = new Schema<Songs, SongModel>({
   title: { type: String },
   user: {
     type: Schema.Types.ObjectId,
@@ -31,4 +42,4 @@ SongSchema.statics.findLyrics = function (id) {
     .then((song: any) => song.lyrics);
 };
 
-export const Song = mongoose.model("song", SongSchema);
+export const Song = mongoose.model<Songs, SongModel>("song", SongSchema);
