@@ -16,7 +16,6 @@ const LyricType = new graphql_1.GraphQLObjectType({
             type: song_type_1.default,
             async resolve(parentValue) {
                 const lyric = await lyric_1.default.findById(parentValue).populate("song");
-                console.log(lyric);
                 return lyric.song;
             },
         },

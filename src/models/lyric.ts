@@ -7,7 +7,7 @@ export interface Lyrics {
 }
 
 interface LyricModel extends Model<Lyrics> {
-  like(id: any): number;
+  like(id: string): any;
 }
 
 const LyricSchema = new Schema<Lyrics, LyricModel>({
@@ -22,9 +22,9 @@ const LyricSchema = new Schema<Lyrics, LyricModel>({
 LyricSchema.static("like", async function like(id) {
   const lyric = await Lyric.findById(id);
   ++lyric!.likes;
+  console.log(lyric);
   return await lyric!.save();
 });
 
 const Lyric = model<Lyrics, LyricModel>("lyric", LyricSchema);
 export default Lyric;
-
