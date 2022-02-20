@@ -9,6 +9,7 @@ import LyricType from "./lyric_type";
 import Song from "../models/song";
 
 const SongType = new GraphQLObjectType({
+  // {__typename: 'SongType', title: 'hot night'}
   name: "SongType",
   fields: () => ({
     id: { type: GraphQLID },

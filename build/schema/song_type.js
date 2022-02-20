@@ -7,6 +7,7 @@ const graphql_1 = require("graphql");
 const lyric_type_1 = __importDefault(require("./lyric_type"));
 const song_1 = __importDefault(require("../models/song"));
 const SongType = new graphql_1.GraphQLObjectType({
+    // {__typename: 'SongType', title: 'hot night'}
     name: "SongType",
     fields: () => ({
         id: { type: graphql_1.GraphQLID },

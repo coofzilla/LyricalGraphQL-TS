@@ -1,23 +1,30 @@
 import * as React from "react";
 import { gql, useQuery } from "@apollo/client";
 
-interface SongListProps {}
+interface Song {
+  title: string;
+  id: string;
+}
 
 const query = gql`
   {
     songs {
       title
+      id
     }
   }
 `;
 
-const SongList: React.FC<SongListProps> = () => {
-  const { loading, error, data } = useQuery(query);
-  console.log(data);
+const SongList = () => {
+  const { loading, data } = useQuery(query);
+
+  if (loading) return null;
+
   return (
     <div>
-      Song List
-      <div></div>
+      {data.songs.map((song: Song) => (
+        <li key={song.id}>{song.title}</li>
+      ))}
     </div>
   );
 };
