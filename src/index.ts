@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import mongoose from "mongoose";
 import { mongoURI } from "./config/dev";
 import { graphqlHTTP } from "express-graphql";
@@ -15,6 +16,12 @@ const app = express();
     console.log("ERROR CONNECTING", err);
   }
 })();
+
+const corsOptions = {
+  origin: "http://localhost:3000",
+  credentials: true,
+};
+app.use(cors(corsOptions));
 
 app.get("/", (req, res) => {
   res.send("LYRICAL SERVER");

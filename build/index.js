@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const cors_1 = __importDefault(require("cors"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const dev_1 = require("./config/dev");
 const express_graphql_1 = require("express-graphql");
@@ -19,6 +20,11 @@ const app = (0, express_1.default)();
         console.log("ERROR CONNECTING", err);
     }
 })();
+const corsOptions = {
+    origin: "http://localhost:3000",
+    credentials: true,
+};
+app.use((0, cors_1.default)(corsOptions));
 app.get("/", (req, res) => {
     res.send("LYRICAL SERVER");
 });
