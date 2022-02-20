@@ -19,6 +19,9 @@ const app = (0, express_1.default)();
         console.log("ERROR CONNECTING", err);
     }
 })();
+app.get("/", (req, res) => {
+    res.send("LYRICAL SERVER");
+});
 app.use("/graphql", (0, express_graphql_1.graphqlHTTP)({
     schema: schema_1.schema,
     graphiql: true,
