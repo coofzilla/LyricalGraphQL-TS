@@ -22,9 +22,13 @@ const SongList = () => {
 
   return (
     <div>
-      {data.songs.map((song: Song) => (
-        <li key={song.id}>{song.title}</li>
-      ))}
+      <ul className="collection">
+        {data.songs.map((song: Song) => (
+          <li className="collection-item" key={song.id}>
+            {song.title}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
