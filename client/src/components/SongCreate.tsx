@@ -1,9 +1,14 @@
-interface SongCreateProps {}
+import { useState } from "react";
 
-const SongCreate = (): SongCreateProps => {
+interface SongCreateProps {
+  someProp?: any;
+}
+
+const SongCreate = ({ someProp }: SongCreateProps) => {
   return (
     <div>
-      <div>SongCreate</div>
+      <h1>Create a New Song</h1>
+      <form></form>
     </div>
   );
 };
