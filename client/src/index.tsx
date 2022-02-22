@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./components/App";
 import SongList from "./components/SongList";
 import SongCreate from "./components/SongCreate";
+import SongDetail from "./components/SongDetail";
 import "./style/style.css";
 
 const client = new ApolloClient({
@@ -19,6 +20,7 @@ const Root = () => {
         <Route path="/" element={<App />}>
           <Route index element={<SongList />} />
           <Route path="songs/new" element={<SongCreate />} />
+          <Route path="songs/:id" element={<SongDetail />} />
         </Route>
       </Routes>
     </BrowserRouter>
