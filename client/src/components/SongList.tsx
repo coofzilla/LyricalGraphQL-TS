@@ -1,5 +1,6 @@
 import * as React from "react";
 import { gql, useQuery } from "@apollo/client";
+import { Link } from "react-router-dom";
 
 interface Song {
   title: string;
@@ -29,6 +30,9 @@ const SongList = () => {
           </li>
         ))}
       </ul>
+      <Link to="songs/new" className="btn-floating btn-large red right">
+        <i className="material-icons">add</i>
+      </Link>
     </div>
   );
 };

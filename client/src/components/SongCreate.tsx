@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import { gql, useMutation } from "@apollo/client";
+import { useNavigate, Link } from "react-router-dom";
 
 interface SongCreateProps {
   someProp?: any;
 }
-const mutation = gql`
+
+//Define Mutation
+//https://graphql.org/learn/queries/ **variables section**
+const ADD_SONG = gql`
   mutation AddSong($title: String) {
     addSong(title: $title) {
       title
@@ -14,16 +18,18 @@ const mutation = gql`
 
 const SongCreate = ({ someProp }: SongCreateProps) => {
   const [input, setInput] = useState("");
-  const [addSong, { data, loading, error }] = useMutation(mutation);
-  console.log(data);
+  const [addSong, { data, loading, error }] = useMutation(ADD_SONG);
+  let navigate = useNavigate();
 
   const onSubmitHandler = (e: React.FormEvent) => {
     e.preventDefault();
     addSong({ variables: { title: input } });
+    navigate("/");
   };
 
   return (
     <div>
+      <Link to="/">Back</Link>
       <h3>Create a New Song</h3>
       <form onSubmit={onSubmitHandler}>
         <label>Song Title: </label>
