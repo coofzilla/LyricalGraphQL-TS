@@ -24,7 +24,7 @@ const SongCreate = ({ someProp }: SongCreateProps) => {
   const onSubmitHandler = (e: React.FormEvent) => {
     e.preventDefault();
     addSong({ variables: { title: input } });
-    navigate("/");
+    navigate("/", { replace: true });
   };
 
   return (
