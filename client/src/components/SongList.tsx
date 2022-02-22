@@ -7,7 +7,7 @@ interface Song {
   id: string;
 }
 
-const query = gql`
+export const GET_SONGS = gql`
   {
     songs {
       title
@@ -17,7 +17,9 @@ const query = gql`
 `;
 
 const SongList = () => {
-  const { loading, data } = useQuery(query);
+  const { loading, data } = useQuery(GET_SONGS, {
+    // pollInterval: 500,
+  });
 
   if (loading) return null;
 

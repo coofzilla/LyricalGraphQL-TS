@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { gql, useMutation } from "@apollo/client";
 import { useNavigate, Link } from "react-router-dom";
+import { GET_SONGS } from "../components/SongList";
 
 interface SongCreateProps {
   someProp?: any;
@@ -18,13 +19,15 @@ const ADD_SONG = gql`
 
 const SongCreate = ({ someProp }: SongCreateProps) => {
   const [input, setInput] = useState("");
-  const [addSong, { data, loading, error }] = useMutation(ADD_SONG);
+  const [addSong, { data, loading, error }] = useMutation(ADD_SONG, {
+    refetchQueries: [GET_SONGS],
+  });
   let navigate = useNavigate();
 
   const onSubmitHandler = (e: React.FormEvent) => {
     e.preventDefault();
     addSong({ variables: { title: input } });
-    navigate("/", { replace: true });
+    navigate("/");
   };
 
   return (
