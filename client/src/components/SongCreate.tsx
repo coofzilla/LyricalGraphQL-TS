@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { gql, useMutation } from "@apollo/client";
 import { useNavigate, Link } from "react-router-dom";
-import { GET_SONGS } from "../components/SongList";
+import { GET_SONGS } from "../queries/getSongs";
 
 interface SongCreateProps {
   someProp?: any;

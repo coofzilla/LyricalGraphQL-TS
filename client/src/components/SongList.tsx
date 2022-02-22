@@ -1,25 +1,15 @@
 import * as React from "react";
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { Link } from "react-router-dom";
+import { GET_SONGS } from "../queries/getSongs";
 
 interface Song {
   title: string;
   id: string;
 }
 
-export const GET_SONGS = gql`
-  {
-    songs {
-      title
-      id
-    }
-  }
-`;
-
 const SongList = () => {
-  const { loading, data } = useQuery(GET_SONGS, {
-    // pollInterval: 500,
-  });
+  const { loading, data } = useQuery(GET_SONGS);
 
   if (loading) return null;
 
