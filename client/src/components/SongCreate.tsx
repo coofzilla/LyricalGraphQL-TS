@@ -19,7 +19,8 @@ const ADD_SONG = gql`
 
 const SongCreate = ({ someProp }: SongCreateProps) => {
   const [input, setInput] = useState("");
-  const [addSong, { data, loading, error }] = useMutation(ADD_SONG, {
+  // can destructure { data, loading, error } if needed from useMutation
+  const [addSong] = useMutation(ADD_SONG, {
     refetchQueries: [GET_SONGS],
   });
   let navigate = useNavigate();
