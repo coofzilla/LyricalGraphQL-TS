@@ -25,8 +25,9 @@ const LyricList = ({ lyrics }: LyricListProps) => {
   const onLike = (id: string, likes: number) => {
     likeLyric({
       variables: { id },
+      //most likely result from mutation
+      //https://www.apollographql.com/docs/react/performance/optimistic-ui/
       optimisticResponse: {
-        __typename: "Mutation",
         likeLyric: {
           id,
           __typename: "LyricType",
