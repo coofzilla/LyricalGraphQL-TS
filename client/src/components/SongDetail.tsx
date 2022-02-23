@@ -4,11 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import LyricCreate from "./LyricCreate";
 import LyricList from "./LyricList";
 
-interface SongDetailProps {
-  prop?: any;
-}
-
-const SongDetail = (prop: SongDetailProps) => {
+const SongDetail = () => {
   const { id } = useParams();
   const { loading, data } = useQuery(GET_SONG, {
     variables: { id },
