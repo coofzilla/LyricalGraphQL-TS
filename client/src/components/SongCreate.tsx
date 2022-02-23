@@ -3,10 +3,6 @@ import { gql, useMutation } from "@apollo/client";
 import { useNavigate, Link } from "react-router-dom";
 import { GET_SONGS } from "../queries/getSongs";
 
-interface SongCreateProps {
-  someProp?: any;
-}
-
 //Define Mutation
 //https://graphql.org/learn/queries/ **variables section**
 const ADD_SONG = gql`
@@ -17,7 +13,7 @@ const ADD_SONG = gql`
   }
 `;
 
-const SongCreate = ({ someProp }: SongCreateProps) => {
+const SongCreate = () => {
   const [input, setInput] = useState("");
   // can destructure { data, loading, error } if needed from useMutation
   const [addSong] = useMutation(ADD_SONG, {

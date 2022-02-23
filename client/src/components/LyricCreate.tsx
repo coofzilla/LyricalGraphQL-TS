@@ -12,6 +12,7 @@ const ADD_LYRIC_TO_SONG = gql`
       lyrics {
         id
         content
+        likes
       }
     }
   }

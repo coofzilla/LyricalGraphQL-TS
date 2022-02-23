@@ -7,7 +7,7 @@ export interface Lyrics {
 }
 
 interface LyricModel extends Model<Lyrics> {
-  like(id: string): any;
+  like(id: string): void;
 }
 
 const LyricSchema = new Schema<Lyrics, LyricModel>({
