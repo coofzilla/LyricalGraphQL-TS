@@ -46,6 +46,7 @@ const LyricList = ({ lyrics }: LyricListProps) => {
               <i className="material-icons" onClick={() => onLike(id, likes)}>
                 thumb_up
               </i>
+              {likes}
             </div>
           </li>
         ))}

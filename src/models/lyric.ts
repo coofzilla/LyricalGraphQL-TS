@@ -22,7 +22,6 @@ const LyricSchema = new Schema<Lyrics, LyricModel>({
 LyricSchema.static("like", async function like(id) {
   const lyric = await Lyric.findById(id);
   ++lyric!.likes;
-  console.log(lyric);
   return await lyric!.save();
 });
 
